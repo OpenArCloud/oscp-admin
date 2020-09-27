@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="bold"
+   enable-background="new 0 0 24 24"
+   height="512"
+   viewBox="0 0 24 24"
+   width="512"
+   version="1.1"
+   sodipodi:docname="plus-sign.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata9">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs7" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3840"
+     inkscape:window-height="2035"
+     id="namedview5"
+     showgrid="false"
+     inkscape:zoom="3.6875"
+     inkscape:cx="306.09841"
+     inkscape:cy="303.88262"
+     inkscape:window-x="-13"
+     inkscape:window-y="-13"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g4490" />
+  <g
+     id="g4490">
+    <rect
+       inkscape:label="background"
+       y="3.4322033"
+       x="4.2457628"
+       height="15.610168"
+       width="16.601696"
+       id="rect4486"
+       style="fill:#fffffe;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.09375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path2"
+       d="M 21.25,0 H 2.75 C 1.233,0 0,1.233 0,2.75 v 18.5 C 0,22.767 1.233,24 2.75,24 h 18.5 C 22.767,24 24,22.767 24,21.25 V 2.75 C 24,1.233 22.767,0 21.25,0 Z m -4,13 H 13 v 4.25 c 0,0.552 -0.447,1 -1,1 -0.553,0 -1,-0.448 -1,-1 V 13 H 6.75 c -0.553,0 -1,-0.448 -1,-1 0,-0.552 0.447,-1 1,-1 H 11 V 6.75 c 0,-0.552 0.447,-1 1,-1 0.553,0 1,0.448 1,1 V 11 h 4.25 c 0.553,0 1,0.448 1,1 0,0.552 -0.447,1 -1,1 z"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
