@@ -78,13 +78,17 @@
 
     export let data;
 
-    console.log(data);
+    let form;
+
+    export function reportValidity() {
+        return form.reportValidity();
+    }
 </script>
 
 
 <slot name="intro" />
 
-<form>
+<form bind:this={form}>
     <fieldset>
         {#if data.id}
         <div>
@@ -110,12 +114,12 @@
 
     <fieldset class="container">
         <legend>Services</legend>
-        <Services data="{data.services}"/>
+        <Services bind:data="{data.services}"/>
     </fieldset>
 
     <fieldset class="container">
         <legend>Coverage</legend>
-        <Geometry data="{data.geometry}"/>
+        <Geometry bind:data="{data.geometry}"/>
     </fieldset>
 
     <fieldset>

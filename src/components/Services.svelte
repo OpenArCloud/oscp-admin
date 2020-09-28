@@ -11,6 +11,7 @@
     .buttonadd {
         width: 100%;
         background-color: black;
+        cursor: pointer;
     }
 
     .buttonadd img {
@@ -19,7 +20,9 @@
 </style>
 
 <script>
-    import { availableServiceTypes } from 'ssd-access';
+    import { availableServiceTypes, ssr_service } from 'ssd-access';
+
+    import Capabilities from './Capabilities.svelte';
 
     export let data;
 
@@ -27,14 +30,7 @@
     function addService(event) {
         event.preventDefault();
 
-        data = [...data, {
-            "id": "service id",
-            "type": "geopose",
-            "url": "http://geopose.geo1.example.com",
-            "title": "service title",
-            "description": "service description",
-            "capabilities": ["geopose", "outside"]
-        }];
+        data = [...data, ssr_service];
     }
 
     function removeService(event, index) {
@@ -49,8 +45,8 @@
 {#each data as service, index}
     <details>
         <summary>
+            <span>{service.title} - </span>
             <span>{service['type']}</span>
-            <span>{service.title}"</span>
             <button class="floatright buttondelete" on:click={(event) => removeService(event, index)}>
                 <img src="/remove.svg" alt="Delete button" />
             </button>
@@ -63,7 +59,7 @@
 
         <div>
             <label for="servicetype">Type</label>
-            <select id="servicetype" bind:value={service['type']} required>
+            <select id="servicetype" bind:value={service.type} required>
                 <option></option>
                 {#each availableServiceTypes as serviceType}
                     <option value="{serviceType.toLowerCase()}">{serviceType}</option>
@@ -86,14 +82,7 @@
             <input id="serviceurl" required bind:value="{service.url}" />
         </div>
 
-        <dl>
-            <dt>Capabilities</dt>
-            <dd>
-            {#each service.capabilities as capability}
-                <input bind:value="{capability}" />
-            {/each}
-            </dd>
-        </dl>
+        <Capabilities bind:data="{service.capabilities}" />
     </details>
 {/each}
 

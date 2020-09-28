@@ -7,7 +7,7 @@
     import { onMount } from 'svelte';
     import { url, route, params, goto } from '@sveltech/routify';
 
-    import { getServiceWithId, deleteWithId } from 'ssd-access';
+    import {getServiceWithId, deleteWithId, validateSsr, putService} from 'ssd-access';
     import { ssr_empty } from 'ssd-access';
     import { authStore } from 'ssd-access/authstore.js';
 
@@ -15,7 +15,8 @@
 
 
     let data = ssr_empty;
-    let returnPath = $route.last ? $route.last.path : '';
+    let returnPath = $route.last ? $route.last.path : '/admin/editservice';
+
 
     onMount(() => {
         getServiceWithId($params.countryCode, $params.id)
@@ -31,6 +32,22 @@
         .then(() => $goto(returnPath))
         .catch(error => console.error(`Failed to delete: ${error}`))
     }
+
+    function handleSave(event) {
+        event.preventDefault();
+
+        const dataString = JSON.stringify(data);
+        validateSsr(dataString)
+            .then(() => authStore.getToken())
+            .then(token => putService($params.countryCode, dataString, data.id, token))
+            .then(response => {
+                console.log(`Record created: ${response}`);
+                $goto(returnPath);
+            })
+            .catch(error => {
+                console.log(`New SSR not sent - ${error}`);
+            });
+    }
 </script>
 
 
@@ -39,8 +56,13 @@
     <span>SSR record detail</span>
 </h2>
 
-<Form {data}></Form>
+<Form {data}>
+    <p slot="intro">Edit SSR record.</p>
+
+    <div slot="controls">
+        <button on:click={handleSave}>Save</button>
+    </div>
+</Form>
 
 <button on:click={handleDelete}>Delete</button>
-<button disabled>Save</button>
 

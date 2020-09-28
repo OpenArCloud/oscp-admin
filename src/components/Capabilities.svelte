@@ -28,7 +28,7 @@
 <script>
     export let data;
 
-    function addBbox(event) {
+    function addCapability(event) {
         event.preventDefault();
 
         if (data) {
@@ -38,7 +38,7 @@
         }
     }
 
-    function deleteBbox(event, index) {
+    function deleteCapability(event, index) {
         event.preventDefault();
 
         data.splice(index, 1);
@@ -48,19 +48,21 @@
 
 
 <dl>
-    <dt>Bounding Box</dt>
+    <dt>Capabilities</dt>
     {#if data}
         <dd>
-        {#each data as box, index}
-            <input type="number" bind:value="{box}"/>
-            <button class="deletebutton" on:click={(event) => deleteBbox(event, index)}>
-                <img src="/remove.svg" alt="Delete bounding box coordinate button" />
+        {#each data as capability, index}
+            <input bind:value="{capability}" />
+            <button class="deletebutton" on:click={(event) => deleteCapability(event, index)}>
+                <img src="/remove.svg" alt="Delete capability button" />
             </button>
         {/each}
         </dd>
     {/if}
 </dl>
 
-<button class="addbutton" on:click={addBbox}>
-    <img src="/plus-sign.svg" alt="Add bounding box coordinate button" />
-</button>
+<div>
+    <button class="addbutton" on:click={addCapability}>
+        <img src="/plus-sign.svg" alt="Add capability button"/>
+    </button>
+</div>
