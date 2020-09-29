@@ -34,7 +34,7 @@
         if (data) {
             data = [...data, ""];
         } else {
-            data = "";
+            data = [];
         }
     }
 
@@ -44,11 +44,22 @@
         data.splice(index, 1);
         data = data;
     }
+
+    function toggleCapabilities(event) {
+        if (event.target.checked) {
+            data = [];
+        } else {
+            data = undefined;
+        }
+    }
 </script>
 
 
 <dl>
-    <dt>Capabilities</dt>
+    <dt>
+        <input type="checkbox" checked="{data !== undefined}" on:change={toggleCapabilities} />
+        <span>Capabilities</span>
+    </dt>
     {#if data}
         <dd>
         {#each data as capability, index}
@@ -61,8 +72,8 @@
     {/if}
 </dl>
 
-<div>
+{#if data !== undefined}
     <button class="addbutton" on:click={addCapability}>
         <img src="/plus-sign.svg" alt="Add capability button"/>
     </button>
-</div>
+{/if}

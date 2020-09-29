@@ -34,7 +34,7 @@
         if (data) {
             data = [...data, ""];
         } else {
-            data = "";
+            data = [];
         }
     }
 
@@ -44,11 +44,22 @@
         data.splice(index, 1);
         data = data;
     }
+
+    function toggleBbox(event) {
+        if (event.target.checked) {
+            data = [];
+        } else {
+            data = undefined;
+        }
+    }
 </script>
 
 
 <dl>
-    <dt>Bounding Box</dt>
+    <dt>
+        <input type="checkbox" checked="{data !== undefined}" on:change={(event) => toggleBbox(event)} />
+        <span>BBox</span>
+    </dt>
     {#if data}
         <dd>
         {#each data as box, index}
@@ -61,6 +72,8 @@
     {/if}
 </dl>
 
-<button class="addbutton" on:click={addBbox}>
-    <img src="/plus-sign.svg" alt="Add bounding box coordinate button" />
-</button>
+{#if data !== undefined}
+    <button class="addbutton" disabled="{data === undefined}" on:click={addBbox}>
+        <img src="/plus-sign.svg" alt="Add bounding box coordinate button" />
+    </button>
+{/if}

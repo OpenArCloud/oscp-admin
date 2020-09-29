@@ -70,6 +70,10 @@
     #roottype {
         font-weight: bold;
     }
+
+    .hidden {
+        visibility: hidden;
+    }
 </style>
 
 <script>
@@ -82,6 +86,14 @@
 
     export function reportValidity() {
         return form.reportValidity();
+    }
+
+    function toggleAltitude(event) {
+        if (event.target.checked) {
+            data.altitude = 0;
+        } else {
+            data.altitude = undefined;
+        }
     }
 </script>
 
@@ -124,8 +136,11 @@
 
     <fieldset>
         <div>
-            <label for="rootaltitude">Altitude</label>
-            <input id="rootaltitude" type="number" step="0.1" bind:value="{data.altitude}"/>
+            <label for="rootaltitude">
+                <input type="checkbox" checked="{data.altitude !== undefined}" on:change={toggleAltitude} />
+                <span>Altitude</span>
+            </label>
+            <input id="rootaltitude" type="number" step="0.1" class:hidden="{data.altitude === undefined}" bind:value="{data.altitude}"/>
         </div>
 
         {#if data.timestamp}
