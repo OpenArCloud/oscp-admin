@@ -10,7 +10,7 @@
     import { authStore } from 'ssd-access/authstore.js'
 
     import jwtDecode from 'jwt-decode';
-    import CountryCode from "../../components/CountryCode.svelte";
+    import CountryCode from "../../../components/CountryCode.svelte";
 
 
     const detailUrl = '../detail';

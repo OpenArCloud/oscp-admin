@@ -11,7 +11,7 @@
     import { ssr_empty } from 'ssd-access';
     import { authStore } from 'ssd-access/authstore.js';
 
-    import Form from '../../components/Form.svelte';
+    import Form from '../../../components/Form.svelte';
 
 
     let data = ssr_empty;

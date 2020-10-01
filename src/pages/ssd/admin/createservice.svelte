@@ -9,8 +9,8 @@
 
     import { goto } from '@sveltech/routify';
 
-    import Form from '../../components/Form.svelte';
-    import CountryCode from '../../components/CountryCode.svelte';
+    import Form from '../../../components/Form.svelte';
+    import CountryCode from '../../../components/CountryCode.svelte';
 
 
     let form;
