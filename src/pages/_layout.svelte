@@ -14,6 +14,8 @@
 
     main {
         position: relative;
+        max-width: 800px;
+        margin: 0 auto;
         padding: 8px;
     }
 
@@ -23,6 +25,7 @@
         max-height: 51px;
     }
 </style>
+
 
 <header>
     <h1><img id="oarc_logo" src="/OARC_Logo_without_BG.png" alt="Open AR Cloud header"/></h1>

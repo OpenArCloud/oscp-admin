@@ -10,4 +10,9 @@
     setTimeout(() => window.routify.inBrowser && authStore.init())
 </script>
 
-scd
+
+<h2>Spatial Content Discovery</h2>
+
+<p>
+    General information about SCD upcoming.
+</p>

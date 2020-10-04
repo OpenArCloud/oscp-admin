@@ -3,6 +3,17 @@
     This code is licensed under MIT license (see LICENSE.md for details)
 -->
 
+<style>
+    button {
+        color: blue;
+        margin: 0;
+        padding: 3px;
+        border: 0;
+        cursor: pointer;
+        background-color: white;
+    }
+</style>
+
 <script>
     import { goto } from '@sveltech/routify';
 
@@ -26,5 +37,8 @@
 main functionality available as standard web components, to make it as easy as possible to integrate access to the
 services into existing cms already in use by companies.</p>
 
-<button on:click={loadSsd}>Start SSD admin</button>
-<button on:click={loadScd}>Start SCD admin</button>
+<dl>
+    <dt>Currently available services are:</dt>
+    <dd><button on:click={loadSsd}>Spatial Service Discovery</button></dd>
+    <dd><button on:click={loadScd}>Spatial Content Discovery</button></dd>
+</dl>

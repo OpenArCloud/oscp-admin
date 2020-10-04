@@ -18,7 +18,7 @@
     }
 
     nav {
-        margin-top: -40px;
+        margin: -40px 0 40px;
     }
 </style>
 

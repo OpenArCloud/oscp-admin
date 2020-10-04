@@ -44,6 +44,8 @@
 </script>
 
 
+<h2>Create Spatial Service</h2>
+
 <Form bind:data bind:this={form}>
     <p slot="intro">Enter data for new SCR record.</p>
 
