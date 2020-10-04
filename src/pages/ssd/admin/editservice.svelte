@@ -6,25 +6,26 @@
 <script>
     import { url } from '@sveltech/routify';
 
-    import { searchServicesForTenant, getServiceWithId } from 'ssd-access';
+    import { searchServicesForProducer, getServiceWithId } from 'ssd-access';
     import { authStore } from 'ssd-access/authstore.js'
 
     import jwtDecode from 'jwt-decode';
-    import CountryCode from "../../../components/CountryCode.svelte";
+    import CountryCode from "../../../components/ssd/CountryCode.svelte";
 
 
+    // eslint-disable-next-line no-undef
+    const providerUrl = oscp_app.env["AUTH0_SSD_PROVIDER"];
     const detailUrl = '../detail';
-    const providerUrl = 'https://ssd.oscp.cloudpose.io/provider';
 
     let countryCodeElement;
     let serviceId = '';
     let searchResults = [];
     let message = '';
 
-    let tenant;
+    let producer;
     authStore.getToken().then(token => {
         const decoded = jwtDecode(token);
-        tenant = decoded[providerUrl];
+        producer = decoded[providerUrl];
     });
 
 
@@ -39,7 +40,7 @@
         if (serviceId.length !== 0) {
             getService();
         } else {
-            getServicesForTenant()
+            getServicesForProducer()
         }
     }
 
@@ -55,9 +56,9 @@
             });
     }
 
-    function getServicesForTenant() {
+    function getServicesForProducer() {
         authStore.getToken()
-            .then(token => searchServicesForTenant(countryCodeElement.value(), token))
+            .then(token => searchServicesForProducer(countryCodeElement.value(), token))
             .then(services => {
                 searchResults = services
                 if (services.length === 0) message = 'No services found';
@@ -78,10 +79,10 @@
 
 
 <h2>Search Services</h2>
-<h3>Tenant: ${tenant}</h3>
+<h3>Producer: {producer}</h3>
 
 <div>
-    <CountryCode bind:this={countryCodeElement}></CountryCode>
+    <CountryCode bind:this={countryCodeElement} />
 
     <label for="searchserviceid">Service ID:</label>
     <input id="searchserviceid" type="text" bind:value="{serviceId}" />

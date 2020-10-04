@@ -4,13 +4,14 @@
 -->
 
 <script>
-    import { ssr_empty, validateSsr, postService } from 'ssd-access';
-    import { authStore } from 'ssd-access/authstore.js'
+    import {ssr_empty, validateSsr, postService} from 'ssd-access';
+    import {authStore} from 'ssd-access/authstore.js'
 
-    import { goto } from '@sveltech/routify';
+    import {goto} from '@sveltech/routify';
 
     import Form from '../../../components/Form.svelte';
-    import CountryCode from '../../../components/CountryCode.svelte';
+    import CountryCode from '../../../components/ssd/CountryCode.svelte';
+    import SSR from "../../../components/ssd/SSR.svelte";
 
 
     let form;
@@ -19,8 +20,6 @@
 
     function save(event) {
         event.preventDefault();
-
-        console.log(`create: ${JSON.stringify(data)}`);
 
         if (!form.reportValidity()) {
             event.preventDefault();
@@ -35,7 +34,7 @@
             .then(token => postService(countryCodeElement.value(), dataString, token))
             .then((response) => {
                 console.log(response);
-                $goto('/');
+                $goto('/ssd');
             })
             .catch(error => {
                 console.log(`New SSR not sent - ${error}`);
@@ -49,6 +48,10 @@
 
     <div slot="extras">
         <CountryCode bind:this={countryCodeElement} />
+    </div>
+
+    <div slot="form">
+        <SSR bind:data={data}/>
     </div>
 
     <div slot="controls">
