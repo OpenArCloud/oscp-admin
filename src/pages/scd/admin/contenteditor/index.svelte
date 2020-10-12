@@ -21,12 +21,16 @@
         padding: 5px;
     }
 
-    :global(#selector button[active]) {
+    #selector button:active {
         background-color: lightgreen;
     }
 
     #selector button[disabled] {
         filter: opacity(25%);
+    }
+
+    #selector button[disabled]:active {
+        background-color: unset;
     }
 
     #selector img {
@@ -35,24 +39,59 @@
 </style>
 
 <script>
+    import { route, goto } from '@sveltech/routify';
+
+
     let storageProvider;
 
-    function selectBox(event) {
+    let returnPath = $route.last ? $route.last.path : 'scd/admin/createservice';
+
+
+    function selectGDrive(event) {
         event.currentTarget.setAttribute('active', 'active');
 
-        import('../../../../components/scd/storageprovider/Box.svelte')
-            .then((result) => storageProvider = result.default)
+        import('../../../../components/scd/storageprovider/GCloud.svelte')
+            .then((result) => {
+                storageProvider = result.default
+            })
             .catch((error) => console.log(`Storage service not loaded: ${error}`));
+    }
+
+    function handleSelected(event) {
+        storageProvider = undefined;
+
+        const selection = event.detail.selection;
+        back(selection);
+    }
+
+    function handleCanceled() {
+        storageProvider = null;
+
+        back();
+    }
+
+    function back(selection=[]) {
+        $goto(returnPath, {selection: JSON.stringify(selection)});
     }
 </script>
 
 
 <p>
-    Using pCloud here as an example for a file selector / uploader to manage online assets. Any other storage service
-    with Javascript client sdk can be implemented here.
+    Using Google Drive Picker here as an example for a file selector / uploader to manage online assets. Any other
+    storage service with Javascript client sdk could be implemented here.
+</p>
+<p>
+    Right now, selecting a file or files in the picker helps to fill the form fields for the content. The main
+    advantage could be to add some additional processing to the files uploaded, or specific validations to check
+    for potential improvements to improve the usability of the file in an AR Cloud experience.
 </p>
 
 <ul id="selector">
+    <li>
+        <button on:click={selectGDrive}>
+            <img src="/cloudserviceicons/icons8-google-drive.svg" alt="Google Drive storage service icon" />
+        </button>
+    </li>
     <li>
         <button disabled>
             <img src="/cloudserviceicons/icons8-pcloud.svg" alt="pCloud storage service icon"/>
@@ -74,15 +113,12 @@
         </button>
     </li>
     <li>
-        <button on:click={selectBox}>
-            <img src="/cloudserviceicons/icons8-box.svg" alt="Box storage service icon" />
-        </button>
-    </li>
-    <li>
         <button disabled>
-            <img src="/cloudserviceicons/icons8-google-drive.svg" alt="Google Drive storage service icon" />
+            <img src="/cloudserviceicons/icons8-box.svg" alt="Box storage service icon" />
         </button>
     </li>
 </ul>
 
-<svelte:component this="{storageProvider}" />
+
+
+<svelte:component this="{storageProvider}" on:selected={handleSelected} on:canceled={handleCanceled} />

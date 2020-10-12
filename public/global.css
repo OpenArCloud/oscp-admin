@@ -84,3 +84,7 @@ input:invalid, select:invalid {
 .buttondelete img {
 	width: 2rem;
 }
+
+.invisible {
+	display: none;
+}
