@@ -6,7 +6,9 @@
 <script>
     import { createEventDispatcher } from 'svelte';
 
+    // eslint-disable-next-line no-undef
     const projectId = oscp_app.env["GOOGLE_PROJECT_ID"];
+    // eslint-disable-next-line no-undef
     const pickerKey = oscp_app.env["GOOGLE_PICKER_KEY"]
 
     const dispatch = createEventDispatcher();

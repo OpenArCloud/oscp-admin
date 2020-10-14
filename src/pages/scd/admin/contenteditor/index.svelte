@@ -3,12 +3,6 @@
     This code is licensed under MIT license (see LICENSE.md for details)
 -->
 
-<!--
-    Intro - accessing box as a sample. Other cloud services with Javascript sdk also possible
-    File list - navigation through file hierarchy
-    Preview - preview 3d models
--->
-
 <style>
     #selector {
         margin-top: 2rem;
@@ -39,7 +33,9 @@
 </style>
 
 <script>
-    import { route, goto } from '@sveltech/routify';
+    import { url, route, goto } from '@sveltech/routify';
+
+    import { CheveronLeftIcon } from 'svelte-zondicons';
 
 
     let storageProvider;
@@ -75,6 +71,13 @@
     }
 </script>
 
+
+<h2>
+    <a href="{$url(returnPath)}">
+        <CheveronLeftIcon />
+    </a>
+    <span>Content select / upload</span>
+</h2>
 
 <p>
     Using Google Drive Picker here as an example for a file selector / uploader to manage online assets. Any other
