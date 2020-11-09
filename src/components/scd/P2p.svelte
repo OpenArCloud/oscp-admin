@@ -25,17 +25,19 @@
     import QRCode from 'qrcode';
 
 
-    const peer = new Peer('testing', {
+    const peer = new Peer({  // TODO: Introduce .env parameters
         debug: 2,
-        host: 'localhost',
-        port: 3001,
+        host: '9000-b3212983-a35b-4551-ac17-0c0f4fe2dc0f.ws-eu01.gitpod.io',  // localhost
+        // port: 3001,
         path: '/'
     });
 
-    const clientUrl = 'https://192.168.2.110:5001/dev/geoposeremote';
+    // const clientUrl = 'https://192.168.2.110:5001/dev/geoposeremote';
+    const clientUrl = 'https://client.browsar.app/dev/geoposeremote';
     const idParameter = 'peerid';
     const dispatch = createEventDispatcher();
 
+    let localPeerId = '';
     let lastPeerId = null;
 
     let connection = null;
@@ -56,6 +58,7 @@
         console.log('ID: ' + peer.id);
         connectionStatus = "Awaiting connection...";
 
+        localPeerId = peer.id;
         createQrCode(peer.id);
     });
 
@@ -148,11 +151,13 @@
         a connection is established and an AR session successfully started, the GeoPose values can be edited here.
     </p>
 
-    <ul id="connect">
-        <li><img id="qrcode" src="{qrCodeUrl}" alt="QR-Code for viewer" /></li>
-        <li>ID: {peer.id}</li>
-        <li>{connectionStatus}</li>
-    </ul>
+    {#if localPeerId !== ''}
+        <ul id="connect">
+            <li><img id="qrcode" src="{qrCodeUrl}" alt="QR-Code for viewer" /></li>
+            <li>ID: {localPeerId}</li>
+            <li>{connectionStatus}</li>
+        </ul>
+    {/if}
 {:else}
     <button on:click={sendToPeer}>Send to AR Viewer</button>
 {/if}

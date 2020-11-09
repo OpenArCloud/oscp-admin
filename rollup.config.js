@@ -13,6 +13,7 @@ import {config} from 'dotenv';
 import replace from '@rollup/plugin-replace';
 import {routify} from '@sveltech/routify';
 import cleaner from 'rollup-plugin-cleaner';
+import fs from "fs";
 // import analyze from 'rollup-plugin-analyzer';
 
 const production = !process.env.ROLLUP_WATCH;
