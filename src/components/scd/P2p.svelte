@@ -27,12 +27,13 @@
 
     const peer = new Peer({  // TODO: Introduce .env parameters
         debug: 2,
-        host: '9000-b3212983-a35b-4551-ac17-0c0f4fe2dc0f.ws-eu01.gitpod.io',  // localhost
-        // port: 3001,
+        host: 'rtc.oscp.cloudpose.io',
+        port: 5678,
+        key: 'peerjs-mvtest',
         path: '/'
     });
 
-    // const clientUrl = 'https://192.168.2.110:5001/dev/geoposeremote';
+    // const clientUrl = 'https://192.168.1.103:5001/dev/geoposeremote';
     const clientUrl = 'https://client.browsar.app/dev/geoposeremote';
     const idParameter = 'peerid';
     const dispatch = createEventDispatcher();
@@ -157,6 +158,8 @@
             <li>ID: {localPeerId}</li>
             <li>{connectionStatus}</li>
         </ul>
+    {:else}
+        <p>Waiting for RTC Signaling server...</p>
     {/if}
 {:else}
     <button on:click={sendToPeer}>Send to AR Viewer</button>
